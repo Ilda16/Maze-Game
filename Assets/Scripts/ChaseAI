@@ -1,0 +1,85 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ChaseAI : MonoBehaviour
+{
+    public float speed = 3f;
+    public float obstacleRange = 5f;
+    public float detectionRange = 10f; // Range to detect the player
+    public Transform player; // Drag the player object here in the Inspector
+
+    private bool isAlive = true;
+
+    void Update()
+    {
+        if (isAlive && player != null)
+        {
+            // Calculate the distance to the player
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+            if (distanceToPlayer < detectionRange)
+            {
+                // Chase the player
+                Chase();
+            }
+            else
+            {
+                // Wander randomly if the player is out of range
+                Wander();
+            }
+
+            // Obstacle detection and avoidance
+            AvoidObstacles();
+        }
+    }
+
+    void Chase()
+    {
+        // Rotate towards the player
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0; // Ignore vertical difference
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
+        // Move towards the player
+        transform.Translate(0, 0, speed * Time.deltaTime);
+    }
+
+    void Wander()
+    {
+        // Simple wandering - just move forward
+        transform.Translate(0, 0, speed * Time.deltaTime);
+    }
+
+    void AvoidObstacles()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+
+        if (Physics.SphereCast(ray, 0.75f, out hit, obstacleRange))
+        {
+            if (hit.transform.gameObject != player.gameObject) // Don't react to the player as an obstacle
+            {
+                float angle = Random.Range(-110, 110);
+                transform.Rotate(0, angle, 0);
+            }
+        }
+    }
+
+    public void SetAlive(bool alive)
+    {
+        isAlive = alive;
+    }
+
+    // Function to check if the player is caught
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player Caught!");
+             player.GetComponent<PlayerController>().Die();
+
+        }
+    }
+}

@@ -1,0 +1,45 @@
+using UnityEngine;
+using System.Collections;
+
+public class ReactiveTarget : MonoBehaviour
+{
+    public float fallRotationAngle = -75f;
+    public float destructionDelay = 1.5f;
+    private bool isAlive = true;
+    public Transform player; // Reference to the player
+
+    void Update()
+    {
+        if (!isAlive)
+        {
+            return;
+        }
+    }
+
+    public IEnumerator Die()
+    {
+        // Rotate the game object to simulate falling over
+        transform.Rotate(fallRotationAngle, 0, 0);
+        
+        // Wait before destroying the object
+        yield return new WaitForSeconds(destructionDelay);
+        
+        Destroy(gameObject);
+    }
+
+    public void ReactToHit()
+    {
+        // Set the entity as dead
+        isAlive = false;
+        
+        // Stop any AI behavior (similar to ChaseAI)
+        ChaseAI behavior = GetComponent<ChaseAI>();
+        if (behavior != null)
+        {
+            behavior.SetAlive(false);
+        }
+
+        // Trigger the death sequence
+        StartCoroutine(Die());
+    }
+}
