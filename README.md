@@ -1,5 +1,5 @@
 # Maze-Game
-#Objective:
+Objective:
 
 The player must find a lever to unlock the exit.
 
