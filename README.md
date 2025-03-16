@@ -1,12 +1,22 @@
 # Maze-Game
 Objective:
 
-The player must find a lever to unlock the exit.
+The player must find a Colored cube hidden in the maze.
+Once the the cube is found, the game is over, and we win.
+Enemies roams the maze, trying to find and attack the player.
+The player can attack the enemy to temporarily disable it for 5 seconds, the player has 10sec cooldown between each attack.
+The enemy can also attack the player, reducing their health. You are started with 1 hp, and if health is 0 game is over.
 
-Once the lever is pulled, the player has 20 seconds to reach the exit before it closes.
+#Contributions:
+Ilda was in charge of the visuals and scripts.
+Henry helped with scripts and helped model the visuals onto the game.
+Marilyn wrote scripts for enemy Ai, and reactive target scripts.
 
-An enemy roams the maze, trying to find and attack the player.
+#3rd Party Assets
+Retrieved assets through the unity store.
+Lowpoly Medieval Skeleton - Free - MEDIEVAL FANTASY SERIES --> Polytope Studio
+Maze Modular Puzzle Kit --> Poly Etereo
+Terrain Sample Asset Pack --> Unity Technologies
 
-The player can attack the enemy to temporarily disable it, causing it to respawn elsewhere.
+#Unity Version --> 6000.0.26f1
 
-The enemy can also attack the player, reducing their health or causing a game over.
