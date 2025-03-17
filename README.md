@@ -1,4 +1,5 @@
 # Maze-Game
+Name: The Labyrinth
 Objective:
 
 The player must find a Colored cube hidden in the maze.
