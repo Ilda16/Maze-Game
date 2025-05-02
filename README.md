@@ -13,10 +13,10 @@ The enemy can also attack the player, reducing their health. You are started wit
 
 ### **Contributions:**
 Ilda: Modeled/Designed the game with free assets, Provided Background Music Script, Set up remote github repo interaction.
-**Updates**: created random spawner script, created spawn pts., added plants to game, added more enemies.
+###**Updates**: created random spawner script, created spawn pts., added bushery to game, added more enemies.
 
 Henry: Modeled/Designed the game, Provided and applied scripts to game Player, enemy, and interactive object.
-**Updates**: Fixed Enemy bugs, provided Main Menu script, and fixed Canvas sizing issues.
+###**Updates**: Fixed Enemy bugs, provided Main Menu script, fixed Canvas sizing issues, provided assets for main menu.
 
 Marilyn: wrote scripts for enemy Ai, and reactive target scripts.
 
